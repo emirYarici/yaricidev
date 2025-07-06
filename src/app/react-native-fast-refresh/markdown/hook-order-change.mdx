@@ -1,0 +1,8 @@
+```typescript
+// ❌ Not Safe (hook order changed)
+function App() {
+  useEffect(() => {}, []);
+  const [count, setCount] = useState(0); // 💥 state will be lost
+  return <Text>{count}</Text>;
+}
+```

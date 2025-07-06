@@ -1,0 +1,11 @@
+```typescript
+// greet.js
+function greet(name) {
+  return `Hello, ${name}`;
+}
+module.exports = { greet };
+
+// main.js
+const { greet } = require("./greet");
+console.log(greet("Eren"));
+```
