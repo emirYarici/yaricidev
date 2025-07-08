@@ -10,11 +10,14 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+// ✅ This is the correct way in App Router
 export const metadata: Metadata = {
   title: "yaricidev",
-  description: "",
+  description: "Take a look my friend",
+  icons: {
+    icon: "/favicon.ico", // from public directory
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,12 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable}`}>
-      <head>
-        <title>Your Site Title</title>
-        <meta name="yaricidev" content="Take a look my friend" />
-        <link rel="icon" href="/yaricidevlogo.svg" />
-        {/* You can use .png or .svg as well */}
-      </head>
       <body className="max-w-[700px] mx-auto bg-red-800 py-10">
         <header className="flex  h-9 w-full mx-auto justify-end px-9 ">
           <div className="flex flex-row items-center gap-3 ">
