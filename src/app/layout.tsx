@@ -23,6 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <head>
+        <title>Your Site Title</title>
+        <meta name="yaricidev" content="Take a look my friend" />
         <link rel="icon" href="/yaricidevlogo.svg" />
         {/* You can use .png or .svg as well */}
       </head>
