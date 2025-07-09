@@ -6,6 +6,7 @@ import CommonJsDynamicComponent from "./markdown/commonjs-dynamic-export.mdx";
 import UpdatePatchMessage from "./markdown/update-patch-message.mdx";
 import UpdatePatchMessageUsage from "./markdown/update-patch-message-usage.mdx";
 import HookOrderUnchangedComponent from "./markdown/hook-order-unchange.mdx";
+import { SaveAnimation } from "./client-components/save-animation.client";
 
 export default function RNFR() {
   return (
@@ -13,6 +14,12 @@ export default function RNFR() {
       <h1 className="w-1/2 font-extrabold text-4xl text-wrap  mb-14 text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500">
         {`How React Native Fast Refresh Works`}
       </h1>
+      <p className="hidden sm:flex">
+        Before starting the article, I wanted to demonstrate the entire flow
+        with a demo. You can explore the process by changing the color!
+      </p>
+      <SaveAnimation />
+
       <p>
         React Native, where the cross platform magic happens. But besides this
         fancy slogan, it has an amazing feature called{" "}
