@@ -17,9 +17,8 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "How React Native Fast Refresh Works",
-    description:
-      "A deep dive into Fast Refresh, Metro, HMR, and React Refresh internals.",
+    title: "Take a look!",
+    description: "Personal blog",
     url: "https://yaricidev.com", // or your homepage
     type: "article",
     images: [
@@ -27,15 +26,14 @@ export const metadata: Metadata = {
         url: "https://yaricidev.com/favicon.ico", // must be full public URL
         width: 1200,
         height: 630,
-        alt: "React Native HMR Flow",
+        alt: "logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "How React Native Fast Refresh Works",
-    description:
-      "A deep dive into Fast Refresh, Metro, HMR, and React Refresh internals.",
+    title: "Take a look!",
+    description: "Personal blog",
     images: ["https://yaricidev.com/favicon.ico"],
   },
 };
