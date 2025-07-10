@@ -10,12 +10,33 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-// ✅ This is the correct way in App Router
 export const metadata: Metadata = {
   title: "yaricidev",
   description: "Take a look my friend",
   icons: {
-    icon: "/favicon.ico", // from public directory
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "How React Native Fast Refresh Works",
+    description:
+      "A deep dive into Fast Refresh, Metro, HMR, and React Refresh internals.",
+    url: "https://yaricidev.com", // or your homepage
+    type: "article",
+    images: [
+      {
+        url: "https://yaricidev.com/favicon.ico", // must be full public URL
+        width: 1200,
+        height: 630,
+        alt: "React Native HMR Flow",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How React Native Fast Refresh Works",
+    description:
+      "A deep dive into Fast Refresh, Metro, HMR, and React Refresh internals.",
+    images: ["https://yaricidev.com/favicon.ico"],
   },
 };
 export default function RootLayout({
@@ -26,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <body className="max-w-[700px] mx-auto bg-red-800 py-10">
-        <header className="flex  h-9 w-full mx-auto justify-end px-9 ">
+        <div className="flex  h-9 w-full mx-auto justify-end px-9 ">
           <div className="flex flex-row items-center gap-3 ">
             <span className=" text-white font-thin ">by</span>
             <Image
@@ -37,7 +58,7 @@ export default function RootLayout({
               alt="profile_photo"
             />
           </div>
-        </header>
+        </div>
         <div className="flex flex-1  p-8">{children}</div>
       </body>
     </html>
