@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
+import Head from "next/head";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -44,6 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable}`}>
+      <Head>
+        <meta property="og:image" content="https://yaricidev.com/favicon.ico" />
+      </Head>
       <body className="max-w-[700px] mx-auto bg-red-800 py-10">
         <div className="flex  h-9 w-full mx-auto justify-end px-9 ">
           <div className="flex flex-row items-center gap-3 ">
