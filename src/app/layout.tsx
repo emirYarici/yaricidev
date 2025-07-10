@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "https://yaricidev.com/favicon.ico", // must be full public URL
+        url: "https://yaricidev.com/apple-touch-icon.png", // must be full public URL
         width: 1200,
         height: 630,
         alt: "logo",
@@ -45,9 +45,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable}`}>
-      <Head>
-        <meta property="og:image" content="https://yaricidev.com/favicon.ico" />
-      </Head>
       <body className="max-w-[700px] mx-auto bg-red-800 py-10">
         <div className="flex  h-9 w-full mx-auto justify-end px-9 ">
           <div className="flex flex-row items-center gap-3 ">
