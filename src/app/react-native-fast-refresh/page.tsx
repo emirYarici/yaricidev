@@ -14,12 +14,13 @@ export default function RNFR() {
       <h1 className="w-1/2 font-extrabold text-4xl text-wrap  mb-14 text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500">
         {`How React Native Fast Refresh Works`}
       </h1>
+      <h2 className="text-2xl font-bold">Flow Demo</h2>
       <p className="hidden sm:flex">
         Before starting the article, I wanted to demonstrate the entire flow
         with a demo. You can explore the process by changing the color!
       </p>
       <SaveAnimation />
-
+      <p>Okay, now lets start!</p>
       <p>
         React Native, where the cross platform magic happens. But besides this
         fancy slogan, it has an amazing feature called{" "}
