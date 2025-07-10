@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #ff7f50;
-  --codebg: #232936;
+  --background: #282c35;
+    --foreground: #ededed;
+    --primary: #ff7f50;
+  --codebg:#232936;
 }
 
 @theme inline {
@@ -40,44 +40,18 @@ pre {
   -ms-overflow-style: none; /* IE and Edge */
 }
 
+.text-gradient {
+  @apply bg-gradient-to-r from-primary to-amber-500;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 body {
     font-family: var(--font-poppins), sans-serif;
   background: var(--background);
   color: var(--foreground);
 }
 
-@keyframes fadeInSlide {
-  0% {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.animate-step-1 {
-  animation: fadeInSlide 0.5s ease forwards;
-  animation-delay: 0.3s;
-}
-.animate-step-2 {
-  animation: fadeInSlide 0.5s ease forwards;
-  animation-delay: 0.8s;
-}
-.animate-step-3 {
-  animation: fadeInSlide 0.5s ease forwards;
-  animation-delay: 1.3s;
-}
-.animate-step-4 {
-  animation: fadeInSlide 0.5s ease forwards;
-  animation-delay: 1.8s;
-}
-.animate-step-5 {
-  animation: fadeInSlide 0.5s ease forwards;
-  animation-delay: 2.3s;
-}
-.animate-step-6 {
-  animation: fadeInSlide 0.5s ease forwards;
-  animation-delay: 2.8s;
-}
+
