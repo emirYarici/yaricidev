@@ -11,7 +11,7 @@ export function Component(data) {
   const handleClick = (tabKey: string) => {
     //This is not urgent
     startTransition(() => {
-      setFilteredList(applyIntensiveFilter(data, tabKey));
+      setFilteredData(applyIntensiveFilter(data, tabKey));
     });
     //This is urgent for UX
     setActiveTab(tabKey);

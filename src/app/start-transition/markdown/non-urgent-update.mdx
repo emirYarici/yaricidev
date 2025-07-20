@@ -10,7 +10,7 @@ const function Component (data){
         setIsLoading(true);
         //This creates the headache
         //Takes too long and freezes the main thread
-        setFilteredList(applyIntensiveFilter(data,tabKey));
+        setFilteredData(applyIntensiveFilter(data,tabKey));
         setIsLoading(false);
         setActiveTab(tabKey);
     }

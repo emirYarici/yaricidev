@@ -11,7 +11,7 @@ export function Component(data) {
   const handleClick = (tabKey: string) => {
     setIsLoading(true);
     startTransition(() => {
-      setFilteredList(applyIntensiveFilter(data, tabKey));
+      setFilteredData(applyIntensiveFilter(data, tabKey));
     });
     setIsLoading(false);
     setActiveTab(tabKey);
