@@ -1,0 +1,18 @@
+```typescript
+import {applyIntensiveFilter} from "@functions"
+import {data} from "@actions"
+import {useState} from "react"
+const function Component (data){
+    const [activeTab,setActiveTab]=useState(undefined)
+    const [filteredData,setFilteredData] = useState(data)
+    const [loading,isLoading] = useState(false)
+    const handleClick = (tabKey:string)=>{
+        setIsLoading(true);
+        //This creates the headache
+        //Takes too long and freezes the main thread
+        setFilteredList(applyIntensiveFilter(data,tabKey));
+        setIsLoading(false);
+        setActiveTab(tabKey);
+    }
+}
+```

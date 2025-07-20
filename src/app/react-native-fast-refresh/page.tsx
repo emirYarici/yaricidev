@@ -32,7 +32,7 @@ export default function RNFR() {
         will try to explain it below. So, lets jump straight!
       </p>
       <h2 className="text-2xl font-bold">🚀 What Is Fast Refresh?</h2>
-      <p className="leading-relaxed ">
+      <p>
         Fast Refresh was introduced in React Native 0.61, replacing the older
         HMR system with a more reliable and React-aware layer. React native has
         HMR system before that but fast refresh is HMR&rsquo;s tailored version

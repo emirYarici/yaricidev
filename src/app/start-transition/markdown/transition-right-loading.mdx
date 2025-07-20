@@ -1,0 +1,19 @@
+```typescript
+import { applyIntensiveFilter } from "@functions";
+import { data } from "@actions";
+import { startTransition, useTransition, useState } from "react";
+
+export function Component(data) {
+  const [activeTab, setActiveTab] = useState(undefined);
+  const [filteredData, setFilteredData] = useState(data);
+  //we add the loading state through useTransition hook
+  const [isLoading, startTransition] = useTransition();
+  const handleClick = (tabKey: string) => {
+    //No need to write extra code for loading
+    startTransition(() => {
+      setFilteredList(applyIntensiveFilter(data, tabKey));
+    });
+    setActiveTab(tabKey);
+  };
+}
+```

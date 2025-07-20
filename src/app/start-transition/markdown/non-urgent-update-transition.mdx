@@ -1,0 +1,20 @@
+```typescript
+import { applyIntensiveFilter } from "@functions";
+import { data } from "@actions";
+import { startTransition } from "react";
+import { useState } from "react";
+
+export function Component(data) {
+  const [activeTab, setActiveTab] = useState(undefined);
+  const [filteredData, setFilteredData] = useState(data);
+
+  const handleClick = (tabKey: string) => {
+    //This is not urgent
+    startTransition(() => {
+      setFilteredList(applyIntensiveFilter(data, tabKey));
+    });
+    //This is urgent for UX
+    setActiveTab(tabKey);
+  };
+}
+```
