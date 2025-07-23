@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "yaricidev",
-  description: "Take a look my friend",
+  description: "Personal blog",
   icons: {
     icon: "/favicon.ico",
   },
