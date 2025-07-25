@@ -56,10 +56,12 @@ export default function RNFR() {
       <h2 className="font-bold text-xl">Dependency Graph</h2>
       <p>
         Metro creates a dependency graph for your entire project. Each module
-        has a unique id. When you make a change in a file, Metro parses the
-        updated file, then rebuilds only the affected modules by walking the
-        dependency graph — instead of recompiling the whole app. Lastly, metro
-        sends a &quot;update patch&quot; message like below, via Websocket
+        has a unique ID. When you make a change in a file, Metro detects the
+        change — typically using Watchman, a performant file-watching service
+        developed by Facebook. It then parses the updated file and rebuilds only
+        the affected modules by walking the dependency graph, instead of
+        recompiling the whole app. Finally, Metro sends an "update patch"
+        message via WebSocket to the client.
       </p>
       <UpdatePatchMessage />
       <h2 className="text-2xl  font-bold">
