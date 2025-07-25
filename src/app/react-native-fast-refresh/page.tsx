@@ -60,8 +60,8 @@ export default function RNFR() {
         change — typically using Watchman, a performant file-watching service
         developed by Facebook. It then parses the updated file and rebuilds only
         the affected modules by walking the dependency graph, instead of
-        recompiling the whole app. Finally, Metro sends an "update patch"
-        message via WebSocket to the client.
+        recompiling the whole app. Finally, Metro sends an &rsquo;update
+        patch&rsquo; message via WebSocket to the client.
       </p>
       <UpdatePatchMessage />
       <h2 className="text-2xl  font-bold">
