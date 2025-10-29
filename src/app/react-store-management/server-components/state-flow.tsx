@@ -45,6 +45,7 @@ export default function StateFlowchart() {
                 <div className="w-px h-6 bg-border" />
 
                 {/* Question 3 */}
+
                 <div className="rounded-lg border-2 border-primary bg-background px-8 py-4 font-medium text-center max-w-xs">
                   Does it update frequently AND do different components need
                   different slices?
