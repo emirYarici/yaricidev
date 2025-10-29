@@ -1,0 +1,22 @@
+```typescript
+import { createContext, useContext, useState } from "react";
+
+const SettingsContext = createContext();
+const UserContext = createContext();
+
+function AppProvider({ children }) {
+  const [settings, setSettings] = useState({ theme: "dark", language: "en" });
+  const [user, setUser] = useState({ name: "John", email: "john@example.com" });
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      <SettingsContext.Provider value={{ settings, setSettings }}>
+        {children}
+      </SettingsContext.Provider>
+    </UserContext.Provider>
+  );
+}
+
+const useSettingsProvider = () => useContext(SettingsContext);
+const useUserProvider = () => useContext(UserContext);
+```

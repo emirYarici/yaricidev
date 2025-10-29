@@ -1,0 +1,11 @@
+```typescript
+import { create } from "zustand";
+
+const useStore = create((set) => ({
+  user: { name: "John", email: "john@example.com" },
+  settings: { theme: "dark", language: "en" },
+
+  setUser: (user) => set({ user }),
+  setSettings: (settings) => set({ settings }),
+}));
+```

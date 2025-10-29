@@ -1,0 +1,29 @@
+```typescript
+import { useSyncExternalStore, useRef } from "react";
+const store = createStore({
+  user: { name: "John", email: "john@example.com" },
+  settings: { theme: "dark", language: "en" },
+});
+
+function useStore(selector) {
+  const selectedState = useRef();
+
+  return useSyncExternalStore(
+    (callback) => {
+      return store.subscribe(() => {
+        const newState = selector(store.getState());
+        //this is the granular selection
+        if (!Object.is(selectedState.current, newState)) {
+          selectedState.current = newState;
+          callback();
+        }
+      });
+    },
+    () => selector(store.getState()),
+    () => selector(store.getState()) // To tell ssr which state to use,
+  );
+}
+
+// Helper to update state
+export const updateStore = (updates) => store.setState(updates);
+```
