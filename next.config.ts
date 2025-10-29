@@ -6,6 +6,10 @@ const nextConfig = {
   reactStrictMode: false,
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  // Add image configuration
+  images: {
+    formats: ["image/avif" as const, "image/webp" as const],
+  },
   // Optionally, add any other Next.js config below
 };
 
