@@ -2,17 +2,16 @@
 
 :root {
   --background: #282c35;
-    --foreground: #ededed;
-    --primary: #ff7f50;
-  --codebg:#232936;
+  --foreground: #ededed;
+  --primary: #ff7f50;
+  --codebg: #232936;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-codebg: var(--codebg)
-
+  --color-codebg: var(--codebg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -22,8 +21,7 @@
     --background: #282c35;
     --foreground: #ededed;
     --primary: #ff7f50;
-  --codebg:#232936;
-
+    --codebg: #232936;
   }
 }
 pre::-webkit-scrollbar {
@@ -34,8 +32,8 @@ pre {
   padding: 1rem;
   background-color: var(--codebg);
   color: #fff;
-    overflow-x: scroll;
-    width: 100%;
+  overflow-x: scroll;
+  width: 100%;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
@@ -48,10 +46,7 @@ pre {
 }
 
 body {
-    font-family: var(--font-poppins), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   background: var(--background);
   color: var(--foreground);
 }
-
-
-
