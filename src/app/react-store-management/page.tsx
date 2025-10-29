@@ -36,7 +36,7 @@ export default function Page() {
         state will{" "}
         <strong>
           {" "}
-          re-render based on the react's reconciliation algorithm
+          re-render based on the react&apos;s reconciliation algorithm
         </strong>
         . In external stores, the state change can be detected by subscribing to
         the store, and only the components that are subscribed to the specific
@@ -89,7 +89,7 @@ export default function Page() {
         The example above shows that even after splitting the contexts, we are
         not able to achieve granular selection of state properties. All
         components consuming the user context will rerender when any property of
-        the user provider's states changes.(The <strong>BadgeCard</strong>{" "}
+        the user providercs states changes.(The <strong>BadgeCard</strong>{" "}
         rerender if the email state change)
       </p>
       <p>We might try a solution like</p>
@@ -133,7 +133,7 @@ export default function Page() {
       </p>
       <h1 className="font-bold text-2xl">Custom Implementation</h1>
       <p>
-        We can use zustand, but to understand how it works, let's create a
+        We can use zustand, but to understand how it works, let&apos;s create a
         custom external store like zustand. We need a store that lives outside
         React:
       </p>
@@ -156,10 +156,10 @@ export default function Page() {
         <div className="flex flex-col">
           <p>
             The implementation uses Object.is for comparison, which checks
-            reference equality. For deep equality or custom comparison, we'd
-            need additional logic like Zustand's shallow comparison. For the
-            purpose of this article, we'll keep it simple with reference
-            equality!
+            reference equality. For deep equality or custom comparison,
+            we&apos;d need additional logic like Zustand&apos;s shallow
+            comparison. For the purpose of this article, we&apos;ll keep it
+            simple with reference equality!
           </p>
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function Page() {
         better choice for a very small app.
       </p>
       <p>
-        For performance, React 19's compiler can auto-memoize components,
+        For performance, React 19&apos;s compiler can auto-memoize components,
         reducing the cost of rerenders from Context. However, Context will still
         trigger rerenders for all consumers when its value changes - the
         compiler just makes those rerenders cheaper.
@@ -191,8 +191,8 @@ export default function Page() {
       </div>
       <h1 className="font-bold text-2xl">Conclusion</h1>
       <p>
-        Context is <strong>tied to React's component tree</strong>. External
-        stores live independently and{" "}
+        Context is <strong>tied to React&apos;s component tree</strong>.
+        External stores live independently and{" "}
         <strong>only notify React when necessary</strong>. The granular
         selection is a very powerful feature that can lead to better performance
         in complex apps. If your app has simple state needs and you want to
