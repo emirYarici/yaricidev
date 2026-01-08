@@ -49,7 +49,7 @@ export default function RootLayout({
           <div className="flex flex-row items-center gap-3 ">
             <span className=" text-white font-thin ">by</span>
             <Image
-              src={"/emirlinkedin.avif"}
+              src="/emirlinkedin.png"
               width={30}
               height={30}
               className="overflow-hidden rounded-full"
