@@ -183,7 +183,7 @@ export default function TimeToRunPage() {
           </li>
         </ul>
         <p className="mt-2">
-          Using Bun is a developer-experience upgrade, not a client-side shift.
+          Using Bun is a server-side upgrade, not a client-side shift.
         </p>
       </div>
 
