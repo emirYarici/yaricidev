@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,7 +47,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable}`}>
       <body className="max-w-[700px] mx-auto bg-red-800 py-10">
         <div className="flex  h-9 w-full mx-auto justify-end px-9 ">
-          <div className="flex flex-row items-center gap-3 ">
+          <Link href={} className="flex flex-row items-center gap-3 ">
             <span className=" text-white font-thin ">by</span>
             <Image
               src="/emirlinkedin.png"
@@ -55,7 +56,7 @@ export default function RootLayout({
               className="overflow-hidden rounded-full"
               alt="profile_photo"
             />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-1  p-8">{children}</div>
       </body>
