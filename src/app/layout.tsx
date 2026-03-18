@@ -47,7 +47,12 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable}`}>
       <body className="max-w-[700px] mx-auto bg-red-800 py-10">
         <div className="flex  h-9 w-full mx-auto justify-end px-9 ">
-          <Link href={} className="flex flex-row items-center gap-3 ">
+          <Link
+            href={
+              "https://www.linkedin.com/in/emir-yar%C4%B1c%C4%B1-440629222/"
+            }
+            className="flex flex-row items-center gap-3 "
+          >
             <span className=" text-white font-thin ">by</span>
             <Image
               src="/emirlinkedin.png"
