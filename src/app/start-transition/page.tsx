@@ -67,13 +67,11 @@ export default function StartTransitionPage() {
         and applies different level of computing intensive heavy filtering,
         depending on the tab.
       </p>
+
+      <p>When you switch between tabs, your entire UI might freeze. Why?</p>
       <p>
-        When you switch between tabs, your entire UI might freeze until the
-        filtering is finished. Why?
-      </p>
-      <p>
-        Because React processes the state update and filtering logic in one big
-        synchronous chunk.
+        Because both the JS computation AND the re-render run synchronously —
+        React cannot do anything else until both are fully complete.
       </p>
       <p>
         During that time, it can&apos;st respond to user input, paint updates,
@@ -166,13 +164,16 @@ export default function StartTransitionPage() {
           ></div>
         </div>
       </div>
+      <p>The tab change (urgent) is rendered immediately.</p>
       <p>
-        State change is renderered and committed, and user is on the hard work
-        tab <strong>without freezing!</strong>
+        React starts rendering the filtered data for profile, but this re-render
+        is non-urgent.
       </p>
       <p>
-        React start to filter the data for profile, but remember, it is a{" "}
-        <strong> non-urgent </strong> work!
+        ⚠️ Note: if applyIntensiveFilter itself is computationally heavy, it
+        still runs synchronously before React can schedule anything.
+        startTransition only de-prioritizes the re-render, not the JS
+        computation.
       </p>
       <ButtonLayout activeTabName="medium" />
       <div className="flex w-full flex-col bg-[#232936] h-20 px-2  rounded-md ">
@@ -206,7 +207,7 @@ export default function StartTransitionPage() {
         </div>
       </div>
       <p>
-        We have a leftover filtering work in timeline(the profile
+        We have a leftover filtering render work in timeline(the profile
         filtering).React will continue to render and commit updates like this
       </p>
       <div className="flex w-full flex-col bg-[#232936] h-20 px-2  rounded-md ">
@@ -231,8 +232,11 @@ export default function StartTransitionPage() {
       </p>
       <ButtonLayout activeTabName="heavy" />
       <p>
-        Now user is on the feed tab and did not waited for the hard work tabs
-        filtering to complete!
+        Now user is on the feed tab without waiting for the previous profile
+        re-render to complete.
+      </p>
+      <p>
+        React discarded that unfinished render work and started fresh for feed.
       </p>
       <h1 className="text-2xl font-bold ">🚪 useTransition() Hook</h1>
       <p>
@@ -266,8 +270,11 @@ export default function StartTransitionPage() {
       <p>
         User experience matters. Without startTransition, a filter or tab switch
         could freeze the UI, especially in low end devices like mobile phones.
-        With it, React stays snappy and users can keep tapping around even while
-        heavy stuff is going on in the background.
+        With it, React can deprioritize and even discard expensive re-renders to
+        keep urgent interactions responsive. However, if the computation itself
+        (the filter function) is the bottleneck, startTransition alone won't
+        help — for that, you'd need Web Workers or chunked processing to truly
+        move work off the main thread.
       </p>
       <p>
         → Found this helpful? Let me know or share it with a fellow React Native
