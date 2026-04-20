@@ -19,20 +19,20 @@ export default function StartTransitionPage() {
         <strong>startTransition</strong>, a gateway to the using React&apos;s s
         one of the greatest features, <strong>concurrency</strong>. In this
         post, I will try to explain how to use it and also how it works under
-        the hood. Let’s start with a brief overview of concurrency.
+        the hood. Let&rsquo;s start with a brief overview of concurrency.
       </p>
       <h1 className="font-bold text-2xl">🔀 What is Concurrency</h1>
       <div className="bg-[#232936] p-3 rounded-md">
         <p>
           Concurrent React is more important than a typical implementation
-          detail — it’s a foundational update to React’s core rendering model.
-          So while it’s not super important to know how concurrency works, it
+          detail — it&rsquo;s a foundational update to React&rsquo;s core rendering model.
+          So while it&rsquo;s not super important to know how concurrency works, it
           may be worth knowing what it is at a high level.
         </p>
         <p>- March 29, 2022 by The React Team</p>
       </div>
       <p>
-        Yes, it’s been a while — 3+ years — but I need to touch this great
+        Yes, it&rsquo;s been a while — 3+ years — but I need to touch this great
         feature and explain it to understand <strong> startTransition</strong>{" "}
         api. By the way, you can opt in to concurrency mode in React v16.
       </p>
@@ -67,7 +67,6 @@ export default function StartTransitionPage() {
         and applies different level of computing intensive heavy filtering,
         depending on the tab.
       </p>
-
       <p>When you switch between tabs, your entire UI might freeze. Why?</p>
       <p>
         Because both the JS computation AND the re-render run synchronously —
@@ -118,6 +117,20 @@ export default function StartTransitionPage() {
       </p>
       <NonUrgentUpdateTransition />
       <h1 className="font-bold text-xl">👣 Step By Step Execution</h1>
+      <div className="bg-[#BA8E23]/10 border-l-4 border-[#BA8E23] p-4 my-6 rounded-r-md">
+        <p className="font-bold text-[#BA8E23] flex items-center gap-2 mb-2">
+          <span>⚠️</span> Important distinction
+        </p>
+        <p>
+          <strong>startTransition</strong> helps with expensive re-renders —
+          React can pause, interrupt, or discard them to stay responsive. It
+          does <strong>NOT</strong> help with expensive JS computations. If
+          your filter function takes 2 seconds to run, the main thread is
+          blocked for those 2 seconds regardless of startTransition. The real
+          benefit here is React not being forced to render stale intermediate
+          results — it can skip straight to the latest state.
+        </p>
+      </div>
       <ButtonLayout activeTabName="light" />
       <p>
         User is on home tab currently. At some time, our user pressed on profile
@@ -228,7 +241,7 @@ export default function StartTransitionPage() {
       </p>
       <p>
         If a new startTransition call comes in before the previous one finishes,
-        React may discard the previous render work if it wasn’t committed yet.
+        React may discard the previous render work if it wasn&rsquo;t committed yet.
       </p>
       <ButtonLayout activeTabName="heavy" />
       <p>
@@ -263,7 +276,7 @@ export default function StartTransitionPage() {
       <h1 className="font-bold text-2xl">📚 Research Tip</h1>
       <p>
         Concurreny is not only about performance, it also enables some great
-        features that came up recently like data fetching with suspense. It’s
+        features that came up recently like data fetching with suspense. It&rsquo;s
         worth exploring those too!
       </p>
       <h1 className="font-bold text-2xl">🏁 Final Thoughts</h1>
@@ -272,8 +285,8 @@ export default function StartTransitionPage() {
         could freeze the UI, especially in low end devices like mobile phones.
         With it, React can deprioritize and even discard expensive re-renders to
         keep urgent interactions responsive. However, if the computation itself
-        (the filter function) is the bottleneck, startTransition alone won't
-        help — for that, you'd need Web Workers or chunked processing to truly
+        (the filter function) is the bottleneck, startTransition alone won&apos;t
+        help — for that, you&apos;d need Web Workers or chunked processing to truly
         move work off the main thread.
       </p>
       <p>
