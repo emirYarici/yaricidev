@@ -9,7 +9,7 @@ export default function Home() {
           className=" flex-col w-full items-start duration-700 p-1 hover:scale-105  hover:translate-x-3 transition-all cursor-pointer flex gap-2"
         >
           <span className="font-bold text-2xl text-primary  ">
-            Maybe a happy little tree lives right here
+            Maybe A Happy Little Tree Lives Right Here
           </span>
           <span className="italic text-sm text-gray-300 ">12 May 2026</span>
           <span className=" text-gray-300 ">
