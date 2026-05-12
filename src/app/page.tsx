@@ -5,6 +5,19 @@ export default function Home() {
     <main className="flex flex-col flex-1 gap-12">
       <div className="flex flex-col flex-1 gap-5">
         <Link
+          href={"/canvaskit"}
+          className=" flex-col w-full items-start duration-700 p-1 hover:scale-105  hover:translate-x-3 transition-all cursor-pointer flex gap-2"
+        >
+          <span className="font-bold text-2xl text-primary  ">
+            High-Performance Canvas Rendering with CanvasKit
+          </span>
+          <span className="italic text-sm text-gray-300 ">12 May 2026</span>
+          <span className=" text-gray-300 ">
+            GPU-accelerated graphics, WASM heap management, and optimization
+            strategies.
+          </span>
+        </Link>
+        <Link
           href={"/time-to-run"}
           className=" flex-col w-full items-start duration-700 p-1 hover:scale-105  hover:translate-x-3 transition-all cursor-pointer flex gap-2"
         >
