@@ -76,7 +76,7 @@ export default function TimeToRunPage() {
           tools and dev servers.
         </p>
       </div>
-      <h2 className="font-bold text-xl">🔩 The Metal: C++ vs. Zig</h2>
+      <h2 className="font-bold text-xl">🔩 The Metal: C++ vs. Zig (and Now Rust)</h2>
       <p>
         Node relies on C++ for its internals, but a large portion of its
         standard library is actually written in JavaScript, requiring constant
@@ -101,6 +101,50 @@ export default function TimeToRunPage() {
           see 3-5x improvements, while cached installs with lockfiles can reach
           10-20x speedups.
         </p>
+      </div>
+
+      {/* 2026 Update: Bun → Rust migration disclaimer */}
+      <div className="border border-yellow-500/30 bg-yellow-500/5 rounded-lg p-4 flex flex-col gap-3">
+        <div className="flex items-center gap-2">
+          <span className="text-yellow-400 text-lg">⚠️</span>
+          <p className="font-bold text-yellow-400 text-sm uppercase tracking-wider">2026 Update — Bun is Moving to Rust</p>
+        </div>
+        <p className="text-sm text-gray-300">
+          In mid-2026, Jarred Sumner and the Bun team announced an experimental port of the Bun runtime to{" "}
+          <strong>Rust</strong>, which has already achieved 99.8% test compatibility on Linux x64 glibc. The
+          core drivers behind this rewrite:
+        </p>
+        <ul className="text-sm text-gray-300 list-disc list-inside space-y-1.5">
+          <li>
+            <strong>Contributor Accessibility:</strong> The Rust developer community is vastly larger than Zig&apos;s,
+            opening the floodgates for more open-source contributors and faster bug fixes.
+          </li>
+          <li>
+            <strong>Maintainability at Scale:</strong> As the codebase grew, Zig&apos;s manual memory management
+            became harder to scale safely. Rust&apos;s ownership model and compile-time memory safety guarantees
+            prevent entire classes of bugs before they hit production.
+          </li>
+          <li>
+            <strong>Ecosystem Leverage:</strong> Instead of building everything from scratch, the team can now
+            tap into battle-tested Rust crates like{" "}
+            <code>Tokio</code> for async I/O and <code>Rayon</code> for data parallelism.
+          </li>
+          <li>
+            <strong>Long-Term Stability:</strong> Following Bun&apos;s acquisition by Anthropic in late 2025,
+            the runtime is now a critical dependency for tools like Claude Code — demanding enterprise-level
+            stability that Rust provides over Zig.
+          </li>
+        </ul>
+        <div className="border-t border-yellow-500/20 pt-3 flex flex-col gap-1.5">
+          <p className="font-semibold text-yellow-400 text-sm">⚙️ What Isn&apos;t Changing</p>
+          <ul className="text-sm text-gray-300 list-disc list-inside space-y-1">
+            <li>Bun still uses <strong>JavaScriptCore (JSC)</strong> under the hood for execution.</li>
+            <li>
+              The goal is <strong>100% backward compatibility</strong> — the CLI, APIs, and Node.js
+              compatibility layer will behave identically for everyday developers.
+            </li>
+          </ul>
+        </div>
       </div>
       <h2 className="font-bold text-xl">🔩 Batteries Included</h2>
       <p>
