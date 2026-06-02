@@ -103,11 +103,11 @@ export default function TimeToRunPage() {
         </p>
       </div>
 
-      {/* 2026 Update: Bun → Rust migration disclaimer */}
+      {/* May 2026 Update: Bun → Rust migration disclaimer */}
       <div className="border border-primary/30 bg-primary/5 rounded-lg p-4 flex flex-col gap-3">
-        <p className="font-bold text-primary text-sm uppercase tracking-wider">2026 Update — Bun is Moving to Rust</p>
+        <p className="font-bold text-primary text-sm uppercase tracking-wider">May 2026 Update — Bun is Moving to Rust</p>
         <p className="text-sm text-gray-300">
-          In mid-2026, Jarred Sumner and the Bun team announced an experimental port of the Bun runtime to{" "}
+          In May 2026, Jarred Sumner and the Bun team announced an experimental port of the Bun runtime to{" "}
           <strong>Rust</strong>, which has already achieved 99.8% test compatibility on Linux x64 glibc. The
           core drivers behind this rewrite:
         </p>
