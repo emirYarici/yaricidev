@@ -104,11 +104,8 @@ export default function TimeToRunPage() {
       </div>
 
       {/* 2026 Update: Bun → Rust migration disclaimer */}
-      <div className="border border-yellow-500/30 bg-yellow-500/5 rounded-lg p-4 flex flex-col gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-yellow-400 text-lg">⚠️</span>
-          <p className="font-bold text-yellow-400 text-sm uppercase tracking-wider">2026 Update — Bun is Moving to Rust</p>
-        </div>
+      <div className="border border-primary/30 bg-primary/5 rounded-lg p-4 flex flex-col gap-3">
+        <p className="font-bold text-primary text-sm uppercase tracking-wider">2026 Update — Bun is Moving to Rust</p>
         <p className="text-sm text-gray-300">
           In mid-2026, Jarred Sumner and the Bun team announced an experimental port of the Bun runtime to{" "}
           <strong>Rust</strong>, which has already achieved 99.8% test compatibility on Linux x64 glibc. The
@@ -135,8 +132,8 @@ export default function TimeToRunPage() {
             stability that Rust provides over Zig.
           </li>
         </ul>
-        <div className="border-t border-yellow-500/20 pt-3 flex flex-col gap-1.5">
-          <p className="font-semibold text-yellow-400 text-sm">⚙️ What Isn&apos;t Changing</p>
+        <div className="border-t border-primary/20 pt-3 flex flex-col gap-1.5">
+          <p className="font-semibold text-primary text-sm">What Isn&apos;t Changing</p>
           <ul className="text-sm text-gray-300 list-disc list-inside space-y-1">
             <li>Bun still uses <strong>JavaScriptCore (JSC)</strong> under the hood for execution.</li>
             <li>
