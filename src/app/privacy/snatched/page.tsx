@@ -79,7 +79,7 @@ export default function SnatchedPrivacyPolicy() {
                 6. GDPR & CCPA Rights
               </a>
               <a href="#children" className="px-3 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all font-medium border-l-2 border-transparent hover:border-rose-500">
-                7. Children's Privacy
+                7. Children&apos;s Privacy
               </a>
               <a href="#contact" className="px-3 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all font-medium border-l-2 border-transparent hover:border-rose-500">
                 8. Contact Info
