@@ -16,7 +16,7 @@ export default function HoldTheDoor() {
         to focus entirely on isolated fixes while missing the broader picture of
         how an attacker actually interacts with our code. We implement a
         specific defense, assume the problem is solved, and move on—without
-        realizing we've left another door entirely wide open.
+        realizing we&rsquo;ve left another door entirely wide open.
       </p>
 
       <p>
@@ -35,7 +35,7 @@ export default function HoldTheDoor() {
       <p>
         It’s not because your pinning implementation is broken. It’s just that
         pinning was designed to <strong>protect the wire, not the device itself</strong>. You
-        didn't do anything wrong; you just stopped one floor too early. Let’s
+        didn&rsquo;t do anything wrong; you just stopped one floor too early. Let’s
         walk up together.
       </p>
 
@@ -98,16 +98,16 @@ export default function HoldTheDoor() {
       <h2 className="text-2xl font-bold mt-4">What Pinning Actually Buys Us</h2>
       <p>
         This entire proxy mechanism relies on a single vulnerability: the app
-        blindly trusting whatever the device's operating system root store tells
+        blindly trusting whatever the device&rsquo;s operating system root store tells
         it to trust. If a user can force the OS to trust a malicious root
         certificate, the secure tunnel is broken.
       </p>
 
       <p>
         <strong>Pinning</strong> elegantly narrows that down. It teaches your app to <strong>bypass the
-        device's root store</strong> for specific domains, saying, "I don’t care if the
+        device&rsquo;s root store</strong> for specific domains, saying, &ldquo;I don&rsquo;t care if the
         operating system trusts this certificate; I am checking the public key
-        myself against a copy I have hardcoded inside my own binary." When
+        myself against a copy I have hardcoded inside my own binary.&rdquo; When
         Proxyman tries to hand your app its dynamically generated fake
         certificate, the pin check fails immediately. Your app realizes someone
         is sitting in the middle of the conversation and gracefully drops the
@@ -118,7 +118,7 @@ export default function HoldTheDoor() {
         But notice where this defense is looking: it’s looking outward. It
         assumed the person trying to watch the traffic is standing on the wire
         between your app and your server—not sitting comfortably right inside
-        the app’s own memory space.
+        the app&rsquo;s own memory space.
       </p>
 
       <h2 className="text-2xl font-bold mt-4">The Shift in Perspective</h2>
@@ -130,7 +130,7 @@ export default function HoldTheDoor() {
       <p>
         A tool like Frida doesn’t waste time trying to forge a certificate to
         fool your pin check on the wire. Instead, it gently steps inside the
-        running application's memory space and alters the compiled function
+        running application&rsquo;s memory space and alters the compiled function
         responsible for checking the pin, making it always return a success
         state.
       </p>
@@ -147,7 +147,7 @@ export default function HoldTheDoor() {
       <p>
         Standard TLS is a one-way street: your app checks if it can trust the
         server. <strong>Mutual TLS (mTLS)</strong> turns that into a real conversation,
-        requiring the server to ask, "And who are you?" Your app must present its
+        requiring the server to ask, &ldquo;And who are you?&rdquo; Your app must present its
         own unique certificate and prove it holds the matching private key before
         any data is exchanged.
       </p>
@@ -157,12 +157,12 @@ export default function HoldTheDoor() {
       </p>
       <ul className="list-disc list-inside space-y-1 pl-2">
         <li>
-          It stops casual API scripting. Someone can't just reverse-engineer
+          It stops casual API scripting. Someone can&rsquo;t just reverse-engineer
           your endpoints and hit them with a quick Python script; without a
-          valid client cert, the server won't even open the door.
+          valid client cert, the server won&rsquo;t even open the door.
         </li>
         <li>
-          It makes proxy tools struggle because the proxy would need your app's
+          It makes proxy tools struggle because the proxy would need your app&rsquo;s
           unique private key to safely pass the traffic upstream.
         </li>
       </ul>
@@ -184,7 +184,7 @@ export default function HoldTheDoor() {
       </p>
 
       <p>
-        And we have to remember: if <strong>Frida</strong> is already running in our app's
+        And we have to remember: if <strong>Frida</strong> is already running in our app&rsquo;s
         memory, it can still peek at the data before it gets encrypted or after
         it gets decrypted by the network layer. The wire might be secure, but
         the room it’s being read in is shared.
@@ -255,7 +255,7 @@ export default function HoldTheDoor() {
         If you make <strong>StrongBox</strong> a strict requirement, your app will gently crash
         or refuse to work for users on older or more budget-friendly Android
         devices. In production, a softer touch works best: try utilizing StrongBox
-        first, catch the exception if it’s missing, and gracefully fall back to
+        first, catch the exception if it&rsquo;s missing, and gracefully fall back to
         the standard hardware-backed <strong>Trusted Execution Environment (TEE)</strong>.
       </p>
 
@@ -265,7 +265,7 @@ export default function HoldTheDoor() {
       <p>
         When we build this hardware flow, a natural cryptographic question comes
         up: If we are bundling the public key into a Certificate Signing Request
-        (CSR) and sending it over the network to our backend, can't an attacker
+        (CSR) and sending it over the network to our backend, can&rsquo;t an attacker
         intercept the payload, modify the details, or send their own public key?
       </p>
 
@@ -296,7 +296,7 @@ export default function HoldTheDoor() {
         </li>
         <li>
           If they try to generate a brand-new signature to match their altered
-          text, they fail completely because they don't have access to the
+          text, they fail completely because they don&rsquo;t have access to the
           private key locked away inside the physical hardware chip.
         </li>
       </ul>
@@ -324,7 +324,7 @@ export default function HoldTheDoor() {
       </p>
 
       <p>
-        This is where Apple’s <strong>App Attest</strong> and Google’s <strong>Play Integrity</strong> come in to
+        This is where Apple&rsquo;s <strong>App Attest</strong> and Google&rsquo;s <strong>Play Integrity</strong> come in to
         lend a hand. Instead of your app trying to prove its own innocence, the
         operating system itself vouches for it.
       </p>
@@ -332,10 +332,10 @@ export default function HoldTheDoor() {
       <p>
         When your app requests its initial certificate via the <strong>CSR flow</strong>, it
         simultaneously asks the OS to provide a cryptographically signed
-        attestation token. This token evaluates the device's integrity, checks
+        attestation token. This token evaluates the device&rsquo;s integrity, checks
         if the application binary matches your official store signature, and links
         directly to the public key you generated. Your server validates this entire
-        chain back to the vendor's root before it issues an identity certificate.
+        chain back to the vendor&rsquo;s root before it issues an identity certificate.
         This proves the public key belongs to a genuine instance of your app running
         on real, untampered smartphone hardware, completely ignoring fake requests
         coming from a script or a laptop.
@@ -377,20 +377,20 @@ export default function HoldTheDoor() {
         Balances in Performance & User Experience
       </h2>
       <p>
-        Because full attestation requires your user's device to talk directly to
-        Apple or Google’s servers to sign a token, it is a naturally heavy
+        Because full attestation requires your user&rsquo;s device to talk directly to
+        Apple or Google&rsquo;s servers to sign a token, it is a naturally heavy
         operation.
       </p>
 
       <ul className="list-disc list-inside space-y-1 pl-2">
         <li>
           <strong>Give it space:</strong> Try not to run an attestation check
-          on every single API call. Doing so will drain your user’s battery,
+          on every single API call. Doing so will drain your user&rsquo;s battery,
           slow down their experience, and cause frustrating timeouts on slower
           connections.
         </li>
         <li>
-          <strong>The natural flow:</strong> It’s much gentler to perform this
+          <strong>The natural flow:</strong> It&rsquo;s much gentler to perform this
           heavy attestation check just once during key moments—like initial setup,
           logging in, or right during that initial CSR phase. From there, you can
           issue a short-lived session token and use rapid, local request body
@@ -435,7 +435,7 @@ export default function HoldTheDoor() {
       </p>
 
       <p>
-        Our goal isn't to build a perfect fortress; it’s simply to build
+        Our goal isn&rsquo;t to build a perfect fortress; it&rsquo;s simply to build
         thoughtfully. By layering these defenses, we make reverse engineering
         expensive and complex, creating a safe, respectful space for our genuine
         users to enjoy.
