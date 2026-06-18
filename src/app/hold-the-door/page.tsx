@@ -48,9 +48,9 @@ export default function HoldTheDoor() {
       <p>
         Normally, when your app wants to talk to a server, it routes traffic
         directly through the internet. When you open a debugging tool, it spins
-        up a local proxy server on your computer. By changing your phone's
-        Wi-Fi settings to point to your computer's IP address, you are
-        intentionally routing all of your app's traffic directly through that
+        up a local proxy server on your computer. By changing your phone&rsquo;s
+        Wi-Fi settings to point to your computer&rsquo;s IP address, you are
+        intentionally routing all of your app&rsquo;s traffic directly through that
         tool.
       </p>
 
@@ -61,8 +61,8 @@ export default function HoldTheDoor() {
       </p>
 
       <p>
-        But for secure HTTPS traffic, things get interesting. The proxy can't
-        read encrypted data without the server's private key, so it performs a
+        But for secure HTTPS traffic, things get interesting. The proxy can&rsquo;t
+        read encrypted data without the server&rsquo;s private key, so it performs a
         constructive <strong>Man-in-the-Middle (MITM)</strong> architecture:
       </p>
 
@@ -70,7 +70,7 @@ export default function HoldTheDoor() {
         <p>
           <strong>The Trust Anchor:</strong> You install the proxy tool’s custom
           Root Certificate onto your test device and manually mark it as
-          "Trusted" in your system settings.
+          &ldquo;Trusted&rdquo; in your system settings.
         </p>
         <p>
           <strong>The Split Handshake:</strong> When your app tries to connect
@@ -81,11 +81,11 @@ export default function HoldTheDoor() {
           Certificate, and hands it back to your app.
         </p>
         <p>
-          <strong>The Decryption Point:</strong> Because you told the device's
-          OS to trust the proxy's root certificate, the app completes the
+          <strong>The Decryption Point:</strong> Because you told the device&rsquo;s
+          OS to trust the proxy&rsquo;s root certificate, the app completes the
           handshake. Now, when your app sends data, it encrypts it using the
           proxy’s key. The proxy decrypts it, logs the plaintext on your
-          monitor, re-encrypts it with the real server's key, and sends it out
+          monitor, re-encrypts it with the real server&rsquo;s key, and sends it out
           to the internet.
         </p>
       </div>
@@ -136,8 +136,8 @@ export default function HoldTheDoor() {
       </p>
 
       <p>
-        It doesn't pick your cryptographic lock; it just walks around the door
-        entirely. Pinning simply isn't built to survive runtime code
+        It doesn&rsquo;t pick your cryptographic lock; it just walks around the door
+        entirely. Pinning simply isn&rsquo;t built to survive runtime code
         modification, and realizing that is where real mobile security begins.
       </p>
 
@@ -248,7 +248,7 @@ export default function HoldTheDoor() {
           .setIsStrongBoxBacked(true)
         </span>
         . <strong>StrongBox</strong> is wonderful, but it relies on specialized hardware chips
-        (like the Titan M) that aren't present in every device.
+        (like the Titan M) that aren&rsquo;t present in every device.
       </p>
 
       <p>
