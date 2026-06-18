@@ -1,0 +1,15 @@
+```kotlin
+// Android — Storing the key within the Keystore/StrongBox
+val keyPairGenerator = KeyPairGenerator.getInstance(
+  KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore"
+)
+
+keyPairGenerator.initialize(
+  KeyGenParameterSpec.Builder("client_auth_key", KeyProperties.PURPOSE_SIGN)
+    .setDigests(KeyProperties.DIGEST_SHA256)
+    .setIsStrongBoxBacked(true)
+    .build()
+)
+
+val keyPair = keyPairGenerator.generateKeyPair()
+```
