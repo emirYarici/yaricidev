@@ -64,6 +64,21 @@ export default function RootLayout({
           </Link>
         </div>
         <div className="flex flex-1  p-8">{children}</div>
+        <footer className="flex flex-col items-center justify-center gap-2 pb-10 pt-6 border-t border-white/5">
+          <p className="text-xs text-white/40 text-center">
+            TempoType is a macOS menu bar app that turns your keystrokes into generative ambient soundscapes.
+          </p>
+          <a
+            href="/tempotype.dmg"
+            download
+            className="inline-flex items-center gap-1.5 text-xs text-white/70 hover:text-primary transition-colors duration-200 font-medium"
+          >
+            <span>Download for macOS (.dmg)</span>
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </a>
+        </footer>
       </body>
     </html>
   );
