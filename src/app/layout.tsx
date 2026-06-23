@@ -97,7 +97,7 @@ export default function RootLayout({
             </Link>
             
             <Link
-              href="https://apps.apple.com/tr/app/snatched-face-yoga/id676142490"
+              href="https://apps.apple.com/tr/app/snatched-face-yoga/id6761424904"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
