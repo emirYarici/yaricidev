@@ -1,0 +1,19 @@
+```javascript
+// Intercepting BoringSSL/OpenSSL encryption boundary to see plaintext traffic
+const ssl_write_ptr = Module.findExportByName("libboringssl.dylib", "SSL_write") 
+  || Module.findExportByName("libssl.so", "SSL_write");
+
+if (ssl_write_ptr) {
+  Interceptor.attach(ssl_write_ptr, {
+    onEnter(args) {
+      // args[1] is the buffer containing the plaintext request data
+      const buf = args[1];
+      const len = args[2].toInt32();
+      const plaintext = Memory.readUtf8String(buf, len);
+      
+      console.log(`[+] Intercepted Plaintext Payload (${len} bytes):`);
+      console.log(plaintext);
+    }
+  });
+}
+```

@@ -1,5 +1,6 @@
 import SwiftCode from "./markdown/swift-code.mdx";
 import AndroidCode from "./markdown/android-code.mdx";
+import FridaHook from "./markdown/frida-hook.mdx";
 
 export default function HoldTheDoor() {
   return (
@@ -403,6 +404,68 @@ export default function HoldTheDoor() {
         and OS detection patches. It’s a shifting landscape, but implementing
         this raises the effort required for an exploit from a casual script to a
         highly dedicated, targeted project.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-4">
+        The Inside Job: Frida Server &amp; Frida Gadget
+      </h2>
+      <p>
+        No matter how robust your client-side cryptography is, it operates within an environment controlled by the user. If an attacker gains full administrative access to that environment (root on Android, jailbreak on iOS), they can run <strong>Frida Server</strong>.
+      </p>
+
+      <p>
+        Frida operates by injecting a dynamic JavaScript engine into the memory space of your running process. Once inside, it doesn&rsquo;t care about SSL pins or certificates; it can hook directly into the network libraries (like <code>NSURLSession</code> on iOS or <code>OkHttp</code> on Android) or even lower-level system socket APIs.
+      </p>
+
+      <p>
+        But jailbreaks and roots are becoming rarer, and many OS detection systems flag them. The real harsh reality is <strong>Frida Gadget</strong>.
+      </p>
+
+      <p>
+        Frida Gadget is a shared library that can be packaged directly into your application&rsquo;s binary. An attacker extracts your APK or decrypted IPA, embeds Frida Gadget, patches the binary&rsquo;s load commands (using tools like <code>optool</code> or <code>patchapk</code>) to load the gadget on startup, and repackages/resigns the app. This modified app runs on any ordinary, retail device. The moment it launches, the gadget fires up, opens a debugger port, and executes the attacker&rsquo;s scripts—granting them full visibility into memory.
+      </p>
+
+      <p>
+        By hooking low-level TLS/SSL functions like <code>SSL_write</code>, an attacker can intercept every outbound request and inbound response in plaintext, right before encryption or right after decryption:
+      </p>
+
+      <div className="my-4">
+        <p className="font-semibold text-sm mb-1 text-primary">Frida Hook (BoringSSL)</p>
+        <FridaHook />
+      </div>
+
+      <p>
+        This reveals your entire request-response cycles, headers, URL parameters, authentication structures, and custom encryption algorithms. Once these are laid bare, the app&rsquo;s secure facade vanishes, allowing the attacker to easily script API clients and bypass the mobile app entirely.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-4">
+        Edge Defenses: The Backend Reality Check (WAF, Akamai, Cloudflare)
+      </h2>
+      <p>
+        If a determined attacker can always bypass client-side protections using tools like Frida, then how do we protect our backend from automated scraping, credential stuffing, API abuse, and DDoS attacks?
+      </p>
+
+      <p>
+        The answer is simple: <strong>treat the mobile client as completely untrusted and hostile</strong>. Shift your ultimate defenses to the network edge by utilizing robust Web Application Firewalls (WAF) and bot management suites like <strong>Akamai</strong>, <strong>Cloudflare</strong>, or <strong>AWS WAF</strong>.
+      </p>
+
+      <div className="bg-[#232936] p-4 rounded-md flex flex-col gap-3 my-2 text-sm">
+        <p>
+          <strong>Bot Mitigation &amp; Behavioral Profiling:</strong> Modern edge platforms don&rsquo;t just look at IP rates. They analyze the TCP/IP connection fingerprint (e.g., JA3 or JA4 fingerprints), TLS negotiation options, and HTTP/2 settings. Scripts using libraries like Python&rsquo;s <code>requests</code> or Go&rsquo;s <code>net/http</code> leave distinct cryptographic fingerprints that do not match the expected signatures of actual iOS or Android systems, allowing WAFs to block them instantly.
+        </p>
+        <p>
+          <strong>Rate Limiting &amp; DDoS Shielding:</strong> Enforce strict request thresholds on your API endpoints at the CDN edge. A WAF can absorb massive volumetric DDoS attacks, distribute the load across global scrubbing centers, and throttle high-frequency automated scraping before a single malicious request reaches your origin servers.
+        </p>
+        <p>
+          <strong>Dynamic Challenges &amp; SDK Integrations:</strong> When requests look suspicious, CDNs can issue managed challenges. For native mobile applications where traditional JavaScript challenges fail, enterprise WAFs (such as Cloudflare Mobile SDK or Akamai Bot Manager) provide mobile SDK integrations to dynamically generate device telemetry and solve challenges natively.
+        </p>
+        <p>
+          <strong>API Shielding:</strong> Configure strict API schemas at the edge. A WAF can validate that incoming JSON payloads strictly match your API definitions (fields, types, sizes) and instantly drop malformed request bodies, protecting your backend code from buffer overflows and unexpected exceptions.
+        </p>
+      </div>
+
+      <p>
+        By combining hardware-backed client identity with edge-level traffic inspection, you create a defense-in-depth architecture. Even if an attacker extracts your API design on a Frida-hooked device, they cannot easily automate attacks against your servers at scale.
       </p>
 
       <h2 className="text-2xl font-bold mt-4">🏁 Final Thoughts</h2>
