@@ -439,6 +439,33 @@ export default function HoldTheDoor() {
       </p>
 
       <h2 className="text-2xl font-bold mt-4">
+        Fighting Back: Runtime Application Self-Protection (RASP)
+      </h2>
+      <p>
+        To defend against these active memory injections, we deploy <strong>Runtime Application Self-Protection (RASP)</strong>. Unlike static checks, RASP runs continuously inside your app to detect and respond to security threats in real-time.
+      </p>
+      <p>
+        When it comes to blocking tools like Frida, a robust RASP implementation performs several critical checks:
+      </p>
+      <ul className="list-disc list-inside space-y-1 pl-2">
+        <li>
+          <strong>Anti-Debugging &amp; Anti-Hooking:</strong> It checks for the presence of debugging tools (like <code>ptrace</code> checks on Unix/iOS) and looks for common hook signatures in memory, such as modified function prologues (e.g., unexpected jump/branch instructions inserted by Frida at the start of system calls).
+        </li>
+        <li>
+          <strong>Library Integrity Checks:</strong> It scans the list of loaded dynamic libraries (dylib/so) in the process to detect unauthorized libraries like <code>frida-agent.so</code> or Frida Gadget.
+        </li>
+        <li>
+          <strong>Signatures &amp; Checksums:</strong> It verifies that the code section of your binary matches its original hash, detecting if code patching tools like <code>optool</code> have injected startup hooks.
+        </li>
+        <li>
+          <strong>Environment Checks:</strong> It searches for standard Frida artifacts (like active local socket connections on port 27042, or running threads named <code>frida-helper</code>).
+        </li>
+      </ul>
+      <p>
+        If RASP detects any tampering, it doesn't just show an alert—it immediately terminates the process, corrupts sensitive key material, or alerts your backend to flag the user session. By turning the app into a hostile environment for reverse engineering, RASP makes injecting code significantly harder and more expensive.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-4">
         Edge Defenses: The Backend Reality Check (WAF, Akamai, Cloudflare)
       </h2>
       <p>
@@ -484,6 +511,9 @@ export default function HoldTheDoor() {
         <p>
           <strong>Attestation</strong> — Is the digital environment running our code healthy
           right now?
+        </p>
+        <p>
+          <strong>RASP</strong> — Is our binary actively defending itself against runtime memory tampering?
         </p>
         <p>
           <strong>Server Monitoring</strong> — Does the behavior of this traffic feel human
