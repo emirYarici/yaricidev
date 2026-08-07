@@ -462,7 +462,7 @@ export default function HoldTheDoor() {
         </li>
       </ul>
       <p>
-        If RASP detects any tampering, it doesn't just show an alert—it immediately terminates the process, corrupts sensitive key material, or alerts your backend to flag the user session. By turning the app into a hostile environment for reverse engineering, RASP makes injecting code significantly harder and more expensive.
+        If RASP detects any tampering, it doesn&rsquo;t just show an alert—it immediately terminates the process, corrupts sensitive key material, or alerts your backend to flag the user session. By turning the app into a hostile environment for reverse engineering, RASP makes injecting code significantly harder and more expensive.
       </p>
 
       <h2 className="text-2xl font-bold mt-4">
