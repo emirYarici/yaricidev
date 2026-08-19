@@ -112,6 +112,16 @@ export default function RootLayout({
               />
             </Link>
           </div>
+
+          <div className="text-xs text-white/50 flex items-center gap-3 mt-1">
+            <Link href="/support/mura" className="hover:text-white transition-colors underline">
+              Mura Support
+            </Link>
+            <span>•</span>
+            <Link href="/privacy/mura" className="hover:text-white transition-colors underline">
+              Mura Privacy Policy
+            </Link>
+          </div>
         </footer>
       </body>
     </html>
