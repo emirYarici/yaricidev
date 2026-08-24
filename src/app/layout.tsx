@@ -92,7 +92,7 @@ export default function RootLayout({
                 width={36}
                 height={36}
                 alt="Netle YKS Asistanı"
-                className="relative rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
+                className="relative w-9 h-9 aspect-square object-cover rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
               />
             </Link>
             
@@ -108,7 +108,7 @@ export default function RootLayout({
                 width={36}
                 height={36}
                 alt="Snatched Face Yoga"
-                className="relative rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
+                className="relative w-9 h-9 aspect-square object-cover rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
               />
             </Link>
 
@@ -124,18 +124,8 @@ export default function RootLayout({
                 width={36}
                 height={36}
                 alt="Mura: Learn Anything"
-                className="relative rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
+                className="relative w-9 h-9 aspect-square object-cover rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
               />
-            </Link>
-          </div>
-
-          <div className="text-xs text-white/50 flex items-center gap-3 mt-1">
-            <Link href="/support/mura" className="hover:text-white transition-colors underline">
-              Mura Support
-            </Link>
-            <span>•</span>
-            <Link href="/privacy/mura" className="hover:text-white transition-colors underline">
-              Mura Privacy Policy
             </Link>
           </div>
         </footer>
