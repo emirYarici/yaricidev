@@ -111,6 +111,22 @@ export default function RootLayout({
                 className="relative rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
               />
             </Link>
+
+            <Link
+              href="https://apps.apple.com/tr/app/mura-learn-anything/id6770509846?l=tr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+            >
+              <span className="absolute -inset-1 bg-gradient-to-r from-[#ff7f50] to-rose-500 rounded-full blur-[2px] opacity-0 group-hover:opacity-75 transition duration-300" />
+              <Image
+                src="/mura.png"
+                width={36}
+                height={36}
+                alt="Mura: Learn Anything"
+                className="relative rounded-full border border-white/10 shadow-md group-hover:border-primary/50 transition-colors duration-300"
+              />
+            </Link>
           </div>
 
           <div className="text-xs text-white/50 flex items-center gap-3 mt-1">
