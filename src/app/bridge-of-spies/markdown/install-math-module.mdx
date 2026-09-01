@@ -1,0 +1,13 @@
+```cpp
+void installMathModule(jsi::Runtime& runtime) {
+  auto hostObject = std::make_shared<MathHostObject>();
+
+  jsi::Object jsObject =
+      jsi::Object::createFromHostObject(runtime, hostObject);
+
+  runtime.global().setProperty(
+      runtime,
+      "mathModule",
+      jsObject);
+}
+```

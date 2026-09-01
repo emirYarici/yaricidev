@@ -1,0 +1,8 @@
+```cpp
+class NativeMathModule : public NativeMathModuleSpecJSI {
+public:
+  jsi::Value multiply(jsi::Runtime& rt, double a, double b) {
+    return jsi::Value(a * b);
+  }
+};
+```

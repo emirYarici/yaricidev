@@ -1,0 +1,16 @@
+```cpp
+class HostObject {
+public:
+  virtual jsi::Value get(
+      jsi::Runtime& rt,
+      const jsi::PropNameID& name);
+
+  virtual void set(
+      jsi::Runtime& rt,
+      const jsi::PropNameID& name,
+      const jsi::Value& value);
+
+  virtual std::vector<jsi::PropNameID>
+  getPropertyNames(jsi::Runtime& rt);
+};
+```

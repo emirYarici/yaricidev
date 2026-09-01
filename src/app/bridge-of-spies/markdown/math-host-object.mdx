@@ -1,0 +1,41 @@
+```cpp
+class MathHostObject : public jsi::HostObject {
+public:
+  jsi::Value get(
+      jsi::Runtime& rt,
+      const jsi::PropNameID& name) override {
+
+    auto propName = name.utf8(rt);
+
+    if (propName == "multiply") {
+      // Return a C++ function to JavaScript
+      return jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "multiply"),
+        2, // Takes 2 arguments
+        [](jsi::Runtime& rt,
+           const jsi::Value& thisVal,
+           const jsi::Value* args,
+           size_t count) -> jsi::Value {
+
+          double a = args[0].asNumber();
+          double b = args[1].asNumber();
+
+          return jsi::Value(a * b);
+        }
+      );
+    }
+
+    return jsi::Value::undefined();
+  }
+
+  std::vector<jsi::PropNameID>
+  getPropertyNames(jsi::Runtime& rt) override {
+    std::vector<jsi::PropNameID> names;
+    names.push_back(
+      jsi::PropNameID::forAscii(rt, "multiply")
+    );
+    return names;
+  }
+};
+```

@@ -5,6 +5,18 @@ export default function Home() {
     <main className="flex flex-col flex-1 gap-12">
       <div className="flex flex-col flex-1 gap-5">
         <Link
+          href={"/bridge-of-spies"}
+          className=" flex-col w-full items-start duration-700 p-1 hover:scale-105  hover:translate-x-3 transition-all cursor-pointer flex gap-2"
+        >
+          <span className="font-bold text-2xl text-primary  ">
+            Bridge of Spies
+          </span>
+          <span className="italic text-sm text-gray-300 ">31 Aug 2026</span>
+          <span className=" text-gray-300 ">
+            Native Modules, TurboModules, and JSI: How React Native JS talks to native code.
+          </span>
+        </Link>
+        <Link
           href={"/hold-the-door"}
           className=" flex-col w-full items-start duration-700 p-1 hover:scale-105  hover:translate-x-3 transition-all cursor-pointer flex gap-2"
         >

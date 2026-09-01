@@ -10,8 +10,8 @@ import { SaveAnimation } from "./client-components/save-animation.client";
 
 export default function RNFR() {
   return (
-    <div className="flex flex-col w-full  flex-1 gap-4  relative leading-relaxed text-gray-300 ">
-      <h1 className="w-2/3 font-extrabold text-4xl mb-14 text-primary sm:text-gradient">
+    <div className="flex flex-col w-full flex-1 gap-4 relative leading-relaxed text-gray-300 [&_strong]:text-primary">
+      <h1 className="w-full md:w-2/3 font-extrabold text-4xl mb-14 text-primary sm:text-gradient">
         How React Native Fast Refresh Works
       </h1>
       <h2 className="text-2xl font-bold hidden sm:flex">Flow Demo</h2>
@@ -20,18 +20,18 @@ export default function RNFR() {
         with a demo. You can explore the process by changing the color!
       </p>
       <SaveAnimation />
-      <p className=" hidden sm:flex">Okay, now lets start!</p>
+      <p className="hidden sm:flex">Okay, now lets start!</p>
       <p>
         React Native, where the cross platform magic happens. But besides this
         fancy slogan, it has an amazing feature called{" "}
-        <span className="inline-block bg-primary text-white px-3 py-0.5 rounded-full font-semibold">
+        <span className="inline-flex items-center align-middle bg-primary text-white px-2.5 py-0.5 text-xs rounded-full font-semibold">
           Fast Refresh
         </span>
         . You change the javascript code, the change is instantly showed up to
         the simulator or device screen. But how does it work under the hood. I
         will try to explain it below. So, lets jump straight!
       </p>
-      <h2 className="text-2xl font-bold">🚀 What Is Fast Refresh?</h2>
+      <h2 className="text-2xl font-bold mt-4">🚀 What Is Fast Refresh?</h2>
       <p>
         Fast Refresh was introduced in React Native 0.61, replacing the older
         HMR system with a more reliable and React-aware layer. React native has
@@ -39,21 +39,21 @@ export default function RNFR() {
         for react native. To understand, we&rsquo;ll look at some key concepts
         of it.
       </p>
-      <h2 className="text-2xl font-bold">🔧 Metro Bundler</h2>
-      <p className="">
+      <h2 className="text-2xl font-bold mt-4">🔧 Metro Bundler</h2>
+      <p>
         Metro is the javascript bundler for React Native. Takes in options, an
         entry file, and gives you a JavaScript file including all JavaScript
         files back. Every time you run a react native project, a compilation of
         many javascript files are done into a single file.
       </p>
-      <h2 className="font-bold text-xl">
+      <h2 className="font-bold text-xl mt-2">
         How It Communicates With Simulator Or Device
       </h2>
       <p>
         Metro also opens a WebSocket connection with the app&rsquo;s JavaScript
         runtime (on the device or simulator).
       </p>
-      <h2 className="font-bold text-xl">Dependency Graph</h2>
+      <h2 className="font-bold text-xl mt-2">Dependency Graph</h2>
       <p>
         Metro creates a dependency graph for your entire project. Each module
         has a unique ID. When you make a change in a file, Metro detects the
@@ -64,7 +64,7 @@ export default function RNFR() {
         patch&rsquo; message via WebSocket to the client.
       </p>
       <UpdatePatchMessage />
-      <h2 className="text-2xl  font-bold">
+      <h2 className="text-2xl font-bold mt-4">
         🌐 HMR And Websocket Communication
       </h2>
       <p>
@@ -78,7 +78,7 @@ export default function RNFR() {
         It is that simple, but lets go a little deeper in HMR flow, especially
         module systems, which makes this possible
       </p>
-      <h2 className="font-bold text-2xl">📦 Module Systems</h2>
+      <h2 className="font-bold text-2xl mt-4">📦 Module Systems</h2>
       <p>
         React Native uses CommonJs like module system. Every module is wrapped
         like
@@ -94,7 +94,7 @@ export default function RNFR() {
         Yes! We write ESModules (ESM), but Metro transpiles them into CommonJS
         behind the scenes. Why?
       </p>
-      <p className="text-xl font-bold">🤔 Why Not Use ESModules Directly?</p>
+      <h2 className="text-xl font-bold mt-2">🤔 Why Not Use ESModules Directly?</h2>
       <p>
         Why metro does that? It is because dynamic exporting is available
         CommonJs module system, not ESModules. Dynamic export means the ability
@@ -107,7 +107,7 @@ export default function RNFR() {
         splitting easily. Besides, it has another system called Live Bindings.
         (we well not cover any of these).
       </p>
-      <h2 className=" font-bold text-2xl">🔁 From HMR to Fast Refresh</h2>
+      <h2 className="font-bold text-2xl mt-4">🔁 From HMR to Fast Refresh</h2>
       <p>
         HMR alone doesn&rsquo;t know or care about React — it just swaps
         modules.
@@ -116,7 +116,7 @@ export default function RNFR() {
       <p>
         If the updated module exports a React component, React Refresh compares
         previous and new versions code. If the component is
-        <span className="ml-1 inline-block bg-primary text-white px-3 py-0.5 rounded-full font-semibold">
+        <span className="mx-1 inline-flex items-center align-middle bg-primary text-white px-2.5 py-0.5 text-xs rounded-full font-semibold">
           Refresh Boundary Safe
         </span>
         , component wil be re-rendered in place and so state and context are
@@ -126,9 +126,9 @@ export default function RNFR() {
         Otherwise, it triggers a full reload. Lets talk about what Refresh
         Boundary Safe is.
       </p>
-      <p className="font-bold text-xl">
+      <h2 className="font-bold text-xl mt-2">
         How to be Refresh Boundary Safe Component?
-      </p>
+      </h2>
       <p>
         React compares the old and new function signatures, i.e., the shape and
         order of hooks. If the signature is not changed, the component is
@@ -147,7 +147,7 @@ export default function RNFR() {
       </p>
       <HookOrderUnchangedComponent />
 
-      <h2 className="font-bold text-2xl">🏁 Final Thoughts</h2>
+      <h2 className="font-bold text-2xl mt-6">🏁 Final Thoughts</h2>
       <p>
         Fast Refresh is one of the most powerful parts of the React Native
         developer experience. By building on top of HMR, Metro, and React
