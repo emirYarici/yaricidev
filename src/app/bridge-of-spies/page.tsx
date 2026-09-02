@@ -447,32 +447,77 @@ export default function BridgeOfSpiesPage() {
         </table>
       </div>
 
-      {/* Unified Architecture Card */}
+      {/* Mechanism vs. Implementation Breakdown Card */}
       <div className="my-6 p-4 sm:p-5 bg-[#1b202c] border border-gray-800 rounded-xl">
         <div className="flex items-center justify-between border-b border-gray-800 pb-2.5 mb-3">
           <span className="text-xs uppercase tracking-wider font-semibold text-gray-400">
-            How The Layers Fit Together
+            The Fundamental Relationship: Mechanism vs. Implementation
           </span>
-          <span className="text-xs text-gray-400 font-mono">React Native Architecture</span>
+          <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+            Enabler vs. System
+          </span>
         </div>
 
-        <div className="flex flex-col items-center gap-2 text-xs">
-          <div className="w-full max-w-xs text-center bg-[#232936] border border-gray-700 text-white py-2 px-3 rounded font-medium">
-            TurboModules (Lifecycle & Module Lookup)
+        <p className="text-sm text-gray-300 mb-3">
+          A common point of confusion is mixing up <strong>JSI</strong> and <strong>TurboModules</strong>. They operate at two distinct layers:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+          <div className="bg-[#232936] border border-gray-700/60 p-3.5 rounded-lg flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="font-bold text-white text-sm">JSI = The Lower Layer (Mechanism)</span>
+              </div>
+              <p className="text-xs text-gray-300">
+                The raw capability to inject C++ HostObjects directly into the JavaScript engine. On its own, JSI is <em>not</em> a module system—it is simply the low-level C++ interface that makes direct in-memory communication possible.
+              </p>
+            </div>
+            <span className="mt-2 text-[11px] text-primary font-medium">Analogy: The ability to lay down a direct bridge.</span>
           </div>
-          <div className="text-gray-500 text-[11px]">↓ Manages modules over JSI</div>
-          <div className="w-full flex items-center justify-center gap-2">
-            <div className="bg-[#232936] border border-gray-700 py-2 px-4 rounded text-white font-medium text-center flex-1">
-              JavaScript
+
+          <div className="bg-[#232936] border border-gray-700/60 p-3.5 rounded-lg flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="font-bold text-white text-sm">TurboModule = The Upper Layer (Pattern)</span>
+              </div>
+              <p className="text-xs text-gray-300">
+                The concrete system built on top of JSI to expose native modules to JavaScript. It leverages JSI to provide structured module registration, type safety, and lifecycle management.
+              </p>
             </div>
-            <div className="bg-[#232936] border border-primary/40 text-primary py-2 px-4 rounded font-bold text-center flex-1">
-              JSI (In-Memory)
-            </div>
-            <div className="bg-[#232936] border border-gray-700 py-2 px-4 rounded text-white font-medium text-center flex-1">
-              Native Code
-            </div>
+            <span className="mt-2 text-[11px] text-primary font-medium">Analogy: The concrete implementation using that bridge.</span>
           </div>
-          <div className="text-gray-500 text-[11px]">↑ Connected by Codegen (Generated Type-Safe Glue)</div>
+        </div>
+
+        <h3 className="font-bold text-sm text-white mb-2">How a TurboModule Operates Step-by-Step:</h3>
+        <ol className="list-decimal list-inside space-y-2 text-xs text-gray-300 mb-4 ml-1">
+          <li>
+            <strong>Define Native Logic:</strong> You write your module on the native platform (Java/Kotlin on Android, Obj-C/Swift on iOS).
+          </li>
+          <li>
+            <strong>Codegen C++ Binding:</strong> Codegen automatically generates C++ glue bindings that connect your native class to a C++ TurboModule class.
+          </li>
+          <li>
+            <strong>Direct In-Memory Reference:</strong> When JS imports the module with <code className="text-gray-200">TurboModuleRegistry.get(&apos;...&apos;)</code>, no serialized JSON travels over the bridge. Thanks to JSI, JS receives a direct, synchronous reference to the C++ host object.
+          </li>
+          <li>
+            <strong>Direct C++ Invocation & Lazy Loading:</strong> Method calls execute just like direct C++ function calls in memory—and lazy loading comes as a built-in bonus (only modules actually called get instantiated).
+          </li>
+        </ol>
+
+        {/* Chain visualization */}
+        <div className="border-t border-gray-800 pt-3">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-gray-400 block mb-2.5 text-center">
+            The Complete Communication Chain
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[11px] font-mono">
+            <span className="bg-[#232936] border border-gray-700 text-white px-2.5 py-1.5 rounded">JS Engine (C++)</span>
+            <span className="text-primary font-bold">⟷</span>
+            <span className="bg-[#232936] border border-primary/40 text-primary font-bold px-2.5 py-1.5 rounded">JSI (C++ Interface)</span>
+            <span className="text-primary font-bold">⟷</span>
+            <span className="bg-[#232936] border border-gray-700 text-white px-2.5 py-1.5 rounded">TurboModule (System)</span>
+            <span className="text-primary font-bold">⟷</span>
+            <span className="bg-[#232936] border border-gray-700 text-white px-2.5 py-1.5 rounded">Native Code (Swift / Kotlin)</span>
+          </div>
         </div>
       </div>
 
@@ -506,11 +551,11 @@ export default function BridgeOfSpiesPage() {
         🏭 What About Fabric?
       </h1>
       <p>
-        JSI is used for more than just native modules. <strong>Fabric</strong> is React Native&apos;s modern rendering engine:
+        Just like TurboModules, <strong>Fabric is built entirely upon JSI</strong> as its foundation. While TurboModules use JSI to invoke native functions and methods, Fabric uses JSI to render native UI components and views:
       </p>
       <ul className="list-disc list-inside space-y-1 ml-4">
-        <li><strong>TurboModules:</strong> Modernizes device features (Camera, Bluetooth, Storage).</li>
-        <li><strong>Fabric:</strong> Modernizes UI rendering by moving the layout <strong>Shadow Tree directly into C++</strong>.</li>
+        <li><strong>TurboModules (Method & Feature Pillar):</strong> Modernizes native function calls, device APIs (Camera, Bluetooth, Storage), and native logic.</li>
+        <li><strong>Fabric (UI & Rendering Pillar):</strong> Modernizes native view rendering by managing the layout <strong>Shadow Tree directly in C++</strong>.</li>
       </ul>
       <p>
         Because the UI layout tree lives in C++ and communicates via JSI, React can perform <strong>synchronous layout measurement</strong> (like text sizing before paint) and enable Concurrent React features without layout jumps.
